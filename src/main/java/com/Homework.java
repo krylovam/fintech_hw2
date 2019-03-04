@@ -1,4 +1,4 @@
-package main.java.com;
+package com;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Font;
@@ -31,13 +31,13 @@ public class Homework {
         ArrayList<String> SurnameWomen = new ArrayList<String>(getLineByLine(NumbersFIOWomen,dir + "SurnameWomen.txt"));
         ArrayList<String> NameWomen = new ArrayList<String>(getLineByLine(NumbersFIOWomen,dir + "NameWomen.txt"));
         ArrayList<String> PatronymicWomen = new ArrayList<String>(getLineByLine(NumbersFIOWomen,dir + "PatronymicWomen.txt"));
-        ArrayList<User> UserMas = new ArrayList<User>();
+        ArrayList<com.User> UserMas = new ArrayList<com.User>();
         for (int i = 0; i < count; i ++){
-            UserMas.add(new User());
-            UserMas.get(i).setCountry(User.getAddress(dir + "Country.txt", constCount));
-            UserMas.get(i).setRegion(User.getAddress(dir + "Region.txt",constCount));
-            UserMas.get(i).setCity(User.getAddress(dir +"City.txt", constCount));
-            UserMas.get(i).setStreet(User.getAddress(dir + "Street.txt",constCount));
+            UserMas.add(new com.User());
+            UserMas.get(i).setCountry(com.User.getAddress(dir + "Country.txt", constCount));
+            UserMas.get(i).setRegion(com.User.getAddress(dir + "Region.txt",constCount));
+            UserMas.get(i).setCity(com.User.getAddress(dir +"City.txt", constCount));
+            UserMas.get(i).setStreet(com.User.getAddress(dir + "Street.txt",constCount));
             UserMas.get(i).setPostcode();
             UserMas.get(i).setHouse();
             UserMas.get(i).setFlat();
@@ -111,12 +111,12 @@ public class Homework {
         BufferedReader bufferedReader = new BufferedReader(fileReader);
         return bufferedReader;
     }
-    private static void getUser(User user, int constCount)throws Exception {
+    private static void getUser(com.User user, int constCount)throws Exception {
         String dir = System.getProperty("user.dir") + File.separator + "src" + File.separator + "main" + File.separator + "resources" + File.separator;
-        user.setCountry(User.getAddress(dir +"Country.txt", constCount));
-        user.setRegion(User.getAddress(dir + "Region.txt",constCount));
-        user.setCity(User.getAddress(dir + "City.txt", constCount));
-        user.setStreet(User.getAddress(dir + "Street.txt",constCount));
+        user.setCountry(com.User.getAddress(dir +"Country.txt", constCount));
+        user.setRegion(com.User.getAddress(dir + "Region.txt",constCount));
+        user.setCity(com.User.getAddress(dir + "City.txt", constCount));
+        user.setStreet(com.User.getAddress(dir + "Street.txt",constCount));
         user.setPostcode();
         user.setHouse();
         user.setFlat();
@@ -124,7 +124,7 @@ public class Homework {
         user.setDayOfBirth();
         user.setAge(user.getDob());
     }
-    private static void writeToPdf(ArrayList<User> UserMas,int count, String[] Header){
+    private static void writeToPdf(ArrayList<com.User> UserMas, int count, String[] Header){
         Document document = new Document();
         try{
             PdfWriter.getInstance(document,new FileOutputStream("my.pdf"));
@@ -167,7 +167,7 @@ public class Homework {
             e.printStackTrace();
         }
     }
-    private static void writeToExcel(ArrayList<User>UserMas,int count,String[] Header)throws Exception{
+    private static void writeToExcel(ArrayList<com.User>UserMas, int count, String[] Header)throws Exception{
         Workbook Excel = new HSSFWorkbook();
         Sheet Sheet = Excel.createSheet("MyWork");
         try {
